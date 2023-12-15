@@ -2,20 +2,19 @@ const arr = [1, 2, 3, 4, 1, 0, 2, 2];
 
 const divide = (arr, n) => {
   // Write your code here
-	if(arr.length === 0) return [];
-	let trackingSum = 0 , ans = [] , subArr = [];
-	for(let i=0;i<arr.length;i++){
-		if(trackingSum + arr[i] <= n){
-			subArr.push(arr[i]);
-			trackingSum += arr[i];
+	const ans=[];
+	let i=0,j=0,sum=0;
+
+	while(j<arr.length){
+		sum+=arr[j];
+		if(sum>n){
+			ans.push(arr.slice(i,j));
+			sum=arr[j];
+			i=j;
 		}
-		else{
-			ans.push(subArr);
-			subArr = [ arr[i] ];
-			trackingSum = arr[i];
-		}
+		j++;
 	}
-	ans.push(subArr);
+	ans.push(arr.slice(i,j));
 	return ans;
 };
 
